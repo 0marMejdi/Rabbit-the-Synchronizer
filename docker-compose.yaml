@@ -1,0 +1,32 @@
+version: '3'
+services:
+  rabbit1:
+    image: rabbitmq:3.13.0-management
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+  rabbit2:
+    image: rabbitmq:3.13.0-management
+    ports:
+      - "5674:5672"
+      - "15674:15672"
+  ho_db:
+    image: mysql:latest
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: kool
+
+  bo1_db:
+    image: mysql:latest
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: kool
+  bo2_db:
+    image: mysql:latest
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: kool
+  

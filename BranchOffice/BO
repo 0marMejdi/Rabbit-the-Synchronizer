@@ -1,0 +1,33 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    
+
+    echo "1 - Branch Office 1"
+        echo "2 - Branch Office 2"
+        echo "choice: "
+        read choice
+        nbr=$choice
+
+else
+    nbr=$1
+fi
+
+case "$nbr" in
+    1)
+        javac -cp "lib/*" -d bin src/*.java
+        cd bin
+        java -DDB_HOST=localhost -DRABBIT_HOST=localhost -DRABBIT_PORT=5674 -DDB_PASSWORD=kool -DDB_USER_NAME=root -DDB_PORT=3308 -cp "../lib/*:." App
+        ;;
+    2)
+        javac -cp "lib/*" -d bin src/*.java
+        cd bin
+        java -DDB_HOST=localhost -DRABBIT_HOST=localhost -DRABBIT_PORT=5675 -DDB_PASSWORD=kool -DDB_USER_NAME=root -DDB_PORT=3309 -cp "../lib/*:." App
+        ;;
+    *)
+        echo "Usage: ./BO.sh [1 | 2]"
+        echo ""
+        echo "1 or 2 for respectively Branch Office N°1 and Branch Office N°2"
+        ;;
+esac
+
+
